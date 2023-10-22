@@ -20,10 +20,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var auth=FirebaseAuth.instance;
+  var islogin=false;
+
+  checkiflogin() async
+  {
+    auth.authStateChanges().listen((User? user) { 
+      if (user != null && mounted){
+        setState(() {
+          islogin = true;
+        });
+    }});
+  }
+
+  @override
+  void initState()
+  {
+    checkiflogin();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FirebaseAuth.instance.currentUser?.uid == null
+      body: 
+      // FirebaseAuth.instance.currentUser?.uid == null
+      !islogin
           ? Signup()
           : Contactlist(
               email: FirebaseAuth.instance.currentUser!.email.toString(),
