@@ -1,4 +1,4 @@
-import 'package:contact_list_flutter_application/authentication/signup.dart';
+import 'package:contact_list_flutter_application/screens/signup.dart';
 import 'package:contact_list_flutter_application/screens/contact_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

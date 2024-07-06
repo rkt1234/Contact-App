@@ -1,7 +1,7 @@
 // import 'dart:html';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:contact_list_flutter_application/authentication/auth.dart';
-import 'package:contact_list_flutter_application/authentication/signup.dart';
+import 'package:contact_list_flutter_application/screens/signup.dart';
 import 'package:contact_list_flutter_application/screens/add_contact.dart';
 import 'package:contact_list_flutter_application/screens/edit_contact.dart';
 // import 'package:contact_list_flutter_application/screens/add_contact.dart';

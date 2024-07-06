@@ -1,22 +1,22 @@
 import 'package:contact_list_flutter_application/authentication/auth.dart';
-import 'package:contact_list_flutter_application/authentication/signin.dart';
+import 'package:contact_list_flutter_application/screens/signin.dart';
+import 'package:contact_list_flutter_application/screens/signup.dart';
 import 'package:contact_list_flutter_application/screens/contact_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Signin extends StatefulWidget {
+  const Signin({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Signin> createState() => _SigninState();
 }
 
-class _SignupState extends State<Signup> {
+class _SigninState extends State<Signin> {
   String password = "";
   String email = "";
   bool email_val = false;
   bool pass_val = false;
-  String snack_message = "";
   bool progress = false;
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class _SignupState extends State<Signup> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  'SIGNUP',
+                                  'SIGNIN',
                                   style: GoogleFonts.montserrat(
                                     textStyle: TextStyle(
                                       fontSize: 30,
@@ -165,7 +165,7 @@ class _SignupState extends State<Signup> {
                                               MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Already a user? ',
+                                              'New user? ',
                                               style: GoogleFonts.montserrat(
                                                 textStyle: TextStyle(
                                                   color: Color.fromARGB(
@@ -175,15 +175,10 @@ class _SignupState extends State<Signup> {
                                             ),
                                             InkWell(
                                               onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const Signin()),
-                                                );
+                                                Navigator.pop(context);
                                               },
                                               child: Text(
-                                                'Signin',
+                                                'Signup',
                                                 style: GoogleFonts.montserrat(
                                                   textStyle: TextStyle(
                                                       fontWeight:
@@ -224,7 +219,9 @@ class _SignupState extends State<Signup> {
                                           });
                                           bool list;
                                           list = await Auth()
-                                              .register(email, password);
+                                              .login(email, password);
+                                          print("ye print ho rha h ");
+                                          print(Auth.message);
                                           setState(() {
                                             progress = false;
                                           });
@@ -242,6 +239,7 @@ class _SignupState extends State<Signup> {
                                             // Step 3
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(snackBar);
+                                            Navigator.pop(context);
                                             Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
@@ -255,9 +253,7 @@ class _SignupState extends State<Signup> {
                                                   child: Text(
                                                 Auth.message,
                                                 style: TextStyle(
-                                                    color: Auth.status
-                                                        ? Colors.green
-                                                        : Colors.red),
+                                                    color: Colors.red),
                                               )),
                                               backgroundColor: Color.fromARGB(
                                                   255, 50, 50, 50),
@@ -272,7 +268,7 @@ class _SignupState extends State<Signup> {
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 10),
                                         child: Text(
-                                          'SIGNUP',
+                                          'SIGNIN',
                                           style: GoogleFonts.montserrat(
                                             textStyle: TextStyle(
                                                 color: Colors.white,
